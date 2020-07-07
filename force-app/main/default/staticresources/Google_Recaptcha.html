@@ -1,0 +1,75 @@
+<html>
+	<head>
+		<title>Recaptcha Frame</title>
+		<script type="text/javascript">
+		
+		// Variables to customize
+		var originPageURL = "*";
+		var sitekey = '6Ldq2qwZAAAAAFtCcLEFEVkRk1V2EAe4FV1f4xnF';
+		
+		// Recaptcha challenge window detection
+		var interval;
+		
+		function detectChallenge() {
+			if (document.getElementsByTagName("div")[3]) {
+				if (document.getElementsByTagName("div")[3].style.visibility === "visible") {
+					big();
+					clearInterval(interval);
+				}
+			}
+		}
+		
+		function scheduleChallengeDetection() {	
+			interval = setInterval(detectChallenge, 300);
+		}
+		
+		// Sends a message with small frame height
+		function small() {
+			parent.postMessage(["setHeight", 100], "*"); 
+			parent.postMessage(["setWidth", 350], "*"); 
+		}
+		
+		// Sends a message with large frame height
+		function big() {
+			parent.postMessage(["setHeight", 525], "*"); 
+			parent.postMessage(["setWidth", 350], "*"); 
+		}
+		
+		// Grecaptcha on network failure
+		var errorCallback = function() {
+			parent.postMessage(["Lock"], originPageURL);
+			small();
+			scheduleChallengeDetection();
+		}
+		
+		// Grecaptcha on expire after two minutes
+		var expireCallback = function() {
+			parent.postMessage(["Lock"], originPageURL);
+			small();
+			scheduleChallengeDetection();
+		}
+		
+		// Grecaptcha on success
+		var verifyCallback = function(response) {
+			parent.postMessage(["Unlock", grecaptcha.getResponse()], originPageURL);
+			small();
+		};
+		
+		// Grecaptcha on load
+		var onloadCallback = function() {
+			grecaptcha.render('html_element', {
+				'sitekey': sitekey,
+				'callback': verifyCallback,
+				'expired-callback': expireCallback,
+				'error-callback': errorCallback
+			});
+			scheduleChallengeDetection();
+		};
+		</script>
+	</head>
+
+	<body style="overflow:hidden;">
+		<div id="html_element"></div>
+		<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async="" defer=""></script>
+	</body>
+</html>

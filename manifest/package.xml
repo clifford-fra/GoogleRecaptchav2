@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>GoogleRecaptchaHandler</members>
+        <members>GoogleRecaptchaHandlerTest</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>googleRecaptcha</members>
+        <name>AuraDefinitionBundle</name>
+    </types>
+    <types>
+        <members>Google_Recaptcha</members>
+        <members>Google_Recaptcha_GStatic</members>
+        <name>RemoteSiteSetting</name>
+    </types>
+    <types>
+        <members>Google_Recaptcha</members>
+        <name>StaticResource</name>
+    </types>
+    <version>48.0</version>
+</Package>

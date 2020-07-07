@@ -1,0 +1,7 @@
+<design:component >
+    <design:attribute name="isHuman" label="Is Human?"/>
+    <design:attribute name="originPageURL" label="Origin Page URL"/>
+    <design:attribute name="required" label="Required?"/>
+    <design:attribute name="requiredMessage" label="Required Message"/>
+    <design:attribute name="enableServerSideVerification" label="Server Side Verification?"/>
+</design:component>

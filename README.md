@@ -1,6 +1,6 @@
 # Google Recaptcha v2 checkbox Flow Component for Salesforce
 
-This guide helps Salesforce developers who are new to Visual Studio Code go from zero to a deployed app using Salesforce Extensions for VS Code and Salesforce CLI.
+This component was developed by me, because I want to avoid any spam or brute force attacks on my flow, that is deployed with Lightning Out on an external page and on a community.
 
 ## Features
 

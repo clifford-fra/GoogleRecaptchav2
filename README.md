@@ -7,7 +7,7 @@ This component was developed by me, because I want to avoid any spam or brute fo
 - Google Recaptcha v2 checkbox flow component
 - A responsive layout, that adapts to the size of the recaptcha, especially the challenge window
 - Server side verification of the recaptcha response
-- Fully compatible to all browers (tested with Firefox, Chrome, Internet Explorer, Chrome Mobile)
+- Fully compatible to all browsers (tested with Firefox, Chrome, Internet Explorer, Chrome Mobile)
 
 ## Flow input and output variables
 

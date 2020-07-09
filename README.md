@@ -11,11 +11,11 @@ This component was developed by me, because I want to avoid any spam or brute fo
 
 ## Flow input and output variables
 
-- isHuman: defaults to false, will be set to true, if the recaptcha verifies you as human
-- originPageURL: insert the URL where the flow will run. e.g.: in the form of https://force-ability-5985-dev-ed--c.visualforce.com if you run it from the flow builder
-- enableServerSideVerification: defaults to false, if set to true, the captcha response will be verified against your secret key in a callout to google
-- required: defaults to true, make it required to pass the recaptcha
-- requiredMessage (optional): the error message displayed, if the user just clicks on next and has not verified he his human yet
+- `isHuman`: defaults to false, will be set to true, if the recaptcha verifies you as human
+- `originPageURL`: insert the URL where the flow will run. e.g.: in the form of https://force-ability-5985-dev-ed--c.visualforce.com if you run it from the flow builder
+- `enableServerSideVerification`: defaults to false, if set to true, the captcha response will be verified against your secret key in a callout to google
+- `required`: defaults to true, make it required to pass the recaptcha
+- `requiredMessage (optional)`: the error message displayed, if the user just clicks on next and has not verified he his human yet
 
 ## Installation instructions
 

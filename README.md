@@ -61,3 +61,8 @@ private static String recaptchaSecretKey = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4Wi
 
 - Is this component secure?
   - Well, I hope so. As long as the input variables of an aura component are considered secure (are they?), then this component is secure. Always activate the server side verification and set the `targetPageURL` properly if possible.
+
+
+## Possible Enhancements in the future
+- Passing the `targetPageURL`and `sitekey` to the iframe as query parameters.
+- Passing the `secret-key` from the aura component to the apex class as string parameter.

@@ -3,7 +3,7 @@
 This component was developed by me, because I want to avoid any spam or brute force attacks on my flow, that is deployed with Lightning Out on an external page and on a community.
 
 ## Basic Concept
-The flow component actually relies on three parts: An aura component, an HTML static resource and an Apex class. The aura component embeds the static resource as an iframe. The HTML file references the Google Recaptcha API and renders the Recaptcha. The iframe tells the aura component the current height and width of the content (e.g. recaptcha challenge) by using `Window.postMessage` and will also communicate the captcha response after the user completes the challenge. The aura component will take the token and call a method in the apex class, where the secret key is saved. The apex class will verify the token against the secret key in a callout to Google. If the verification is successful, the aura component will switch it's variable `isHuman` to `true` and let the user go to the next screen.
+The flow component actually relies on three parts: An aura component, an HTML static resource and an Apex class. The aura component embeds the static resource as an iframe. The HTML file references the Google Recaptcha API and renders the Recaptcha. The iframe tells the aura component the current height and width of the content (e.g. recaptcha challenge) by using `Window.postMessage` and will also communicate the captcha response in the same way after the user completes the challenge. The aura component will take the token and call a method in the apex class, where the secret key is saved. The apex class will verify the token against the secret key in a callout to Google. If the verification is successful, the aura component will switch it's variable `isHuman` to `true` and let the user go to the next screen.
 
 ## Features
 
@@ -45,3 +45,19 @@ In the GoogleRecaptchaHandler apex class, insert your own secret key at the begi
 ```apex
 private static String recaptchaSecretKey = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe';
 ```
+
+## FAQ
+- Why not use a lightning web component?
+  - A lightning web component does not receive messages from the embeddded iframe. Thus, the iframe could not send the captcha response and the height of the content.
+
+- Can you support Google Recaptcha v3?
+  - I have to check by I don't think so. Maybe implementing Google Recaptcha v2 invisible would be fairly easy.
+
+- The Recaptcha tells me, that it can only be used for testing purposes!
+  - Create your own site and secret key and insert them as explained.
+
+- Eventhough I successfully passed the recaptcha challenge, the flow will not let me go to the next screen.
+  - Check the `originPageURL`variable and set it correctly. Otherwise the aura component will not receive the recaptcha response. Also check the `targetPageURL` in the static resource.
+
+- Is this component secure?
+  - Well, I hope so. As long as the input variables of an aura component are considered secure (are they?), then this component is secure. Always activate the server side verification and set the `targetPageURL` properly if possible.

@@ -27,13 +27,13 @@ Generate your own site and secret key here: https://www.google.com/recaptcha/
 ### Part 2
 In the html file in the static resource Google_Recaptcha, update these lines and reupload the resource:
 ```javascript
-var originPageURL = "*";
+var targetPageURL = "*";
 var sitekey = '6Ldq2qwZAAAAAFtCcLEFEVkRk1V2EAe4FV1f4xnF';
 ```
 
-`originPageURL` will work with the wildcard `"*"`, but for security reasons, you should enter the URL, where the flow runs. Remember: The component will only work if the domains in `originPageURL` in the static resource, URL in your Browser and `originPageURL` in the flow components' input are the same (well except if you use the wildcard in the static resource, then only the last two need to be the same).
+`targetPageURL` will work with the wildcard `"*"`, but for security reasons, you should enter the URL, where the flow component runs. Remember: The component will only work if the domains in `targetPageURL` in the static resource, URL in your Browser and `originPageURL` in the flow components' input are the same (well except if you use the wildcard in the static resource, then only the last two need to be the same).
 
-Setting the `originPageURL` in the static resource means, that the flow component will only run on this domain. If you want to use the Recaptcha Component for example in your Org and on a community, where the domain differs, then leave the originPageURL variable `"*"`.
+Setting the `targetPageURL` in the static resource to a specific URL means, that the flow component will only run on this domain. If you want to use the Recaptcha Component for example in your Org and in your community (with different domains), then leave the `targetPageURL` variable `"*"`.
 
 Checkout this link to get more information: https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage
 

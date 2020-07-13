@@ -4,7 +4,7 @@
 		<script type="text/javascript">
 		
 		// Variables to customize
-		var originPageURL = "*";
+		var targetPageURL = "*";
 		var sitekey = '6Ldq2qwZAAAAAFtCcLEFEVkRk1V2EAe4FV1f4xnF';
 		
 		// Recaptcha challenge window detection
@@ -37,21 +37,21 @@
 		
 		// Grecaptcha on network failure
 		var errorCallback = function() {
-			parent.postMessage(["Lock"], originPageURL);
+			parent.postMessage(["Lock"], targetPageURL);
 			small();
 			scheduleChallengeDetection();
 		}
 		
 		// Grecaptcha on expire after two minutes
 		var expireCallback = function() {
-			parent.postMessage(["Lock"], originPageURL);
+			parent.postMessage(["Lock"], targetPageURL);
 			small();
 			scheduleChallengeDetection();
 		}
 		
 		// Grecaptcha on success
 		var verifyCallback = function(response) {
-			parent.postMessage(["Unlock", grecaptcha.getResponse()], originPageURL);
+			parent.postMessage(["Unlock", grecaptcha.getResponse()], targetPageURL);
 			small();
 		};
 		

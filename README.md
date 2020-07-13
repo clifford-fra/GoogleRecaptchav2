@@ -48,10 +48,10 @@ private static String recaptchaSecretKey = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4Wi
 
 ## FAQ
 - Why not use a lightning web component?
-  - A lightning web component does not receive messages from the embeddded iframe. Thus, the iframe could not send the captcha response and the height of the content.
+  - A lightning web component does not receive messages from the embedded iframe. Thus, the captcha response and the height of the content cannot be processed. This might be related to the Content Security Policy (CSP) of Salesforce.
 
 - Can you support Google Recaptcha v3?
-  - I have to check by I don't think so. Maybe implementing Google Recaptcha v2 invisible would be fairly easy.
+  - I have to check but I don't think so. Maybe implementing Google Recaptcha v2 invisible would be fairly easy.
 
 - The Recaptcha tells me, that it can only be used for testing purposes!
   - Create your own site and secret key and insert them as explained.

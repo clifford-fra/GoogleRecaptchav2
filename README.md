@@ -35,6 +35,8 @@ var sitekey = '6Ldq2qwZAAAAAFtCcLEFEVkRk1V2EAe4FV1f4xnF';
 
 Setting the `originPageURL` in the static resource means, that the flow component will only run on this domain. If you want to use the Recaptcha Component for example in your Org and on a community, where the domain differs, then leave the originPageURL variable `"*"`.
 
+Checkout this link to get more information: https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage
+
 ### Part 3
 In the GoogleRecaptchaHandler apex class, insert your own secret key at the beginning:
 ```apex

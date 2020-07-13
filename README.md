@@ -19,13 +19,13 @@ This component was developed by me, because I want to avoid any spam or brute fo
 
 ## Installation instructions
 
-At minimum for testing purposes, you just have to insert the correct originPageURL in the flow component. Then it will run with googles official test site and secret key. But in order to set up the component properly, you have to do the following:
+At minimum for testing purposes, you just have to insert the correct `originPageURL` in the flow component. Then it will run with googles official test site and secret key. But in order to set up the component properly, you have to do the following:
 
 ### Part 1
 Generate your own site and secret key here: https://www.google.com/recaptcha/
 
 ### Part 2
-In the html file in the static resource Google_Recaptcha, update these lines and reupload the resource:
+In the html file in the static resource `Google_Recaptcha`, update these lines and reupload the resource:
 ```javascript
 var targetPageURL = "*";
 var sitekey = '6Ldq2qwZAAAAAFtCcLEFEVkRk1V2EAe4FV1f4xnF';

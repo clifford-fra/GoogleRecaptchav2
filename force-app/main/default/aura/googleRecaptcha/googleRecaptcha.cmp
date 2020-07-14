@@ -5,6 +5,8 @@
     <aura:attribute name="requiredMessage" type="String" />
     <aura:attribute name="recaptchaResponse" type="String" />
     <aura:attribute name="enableServerSideVerification" type="Boolean" default="false" />
+    <aura:attribute name="siteKey" type="String" default="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" />
+    <aura:attribute name="secretKey" type="String" default="6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe" />
 
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
 

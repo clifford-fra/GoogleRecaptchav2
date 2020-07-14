@@ -1,8 +1,7 @@
 public with sharing class GoogleRecaptchaHandler {
-    private static String recaptchaSecretKey = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe';
         
     @AuraEnabled
-    public static Boolean isVerified(String recaptchaResponse){
+    public static Boolean isVerified(String recaptchaResponse, String recaptchaSecretKey){
         Http http = new Http();
         HttpRequest request = new HttpRequest();
         request.setEndpoint('https://www.google.com/recaptcha/api/siteverify');

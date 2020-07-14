@@ -1,8 +1,9 @@
-<design:component >
-    <design:attribute name="isHuman" label="Is Human?"/>
-    <design:attribute name="originPageURL" label="Origin Page URL"/>
-    <design:attribute name="required" label="Required?"/>
-    <design:attribute name="requiredMessage" label="Required Message"/>
-    <design:attribute name="enableServerSideVerification" label="Server Side Verification?"/>
-    <design:attribute name="secretKey" label="Recaptcha Secret Key"/>
+<design:component label="Google Recaptcha v2 Checkbox">
+    <design:attribute name="isHuman" label="Is Human?" description="Will be set to true after verification" />
+    <design:attribute name="originPageURL" label="Origin Page URL" description="The domain where your flow runs e.g. https://example.com" />
+    <design:attribute name="required" label="Required?" description="If the completion of the captcha is required" />
+    <design:attribute name="requiredMessage" label="Required Message (optional)" description="An alternative required message" />
+    <design:attribute name="enableServerSideVerification" label="Server Side Verification?" description="If set to true, the grecaptcha response is verified against the secret key" />
+    <design:attribute name="secretKey" label="Recaptcha Secret Key" description="Your secret key generated for your domain" />
+    <design:attribute name="siteKey" label="Recaptcha Site Key" description="Your site key generated for your domain" />
 </design:component>

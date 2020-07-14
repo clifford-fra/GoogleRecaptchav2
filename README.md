@@ -49,6 +49,9 @@ private static String recaptchaSecretKey = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4Wi
 ## FAQ
 - Why not use a lightning web component?
   - A lightning web component does not receive messages from the embedded iframe. Thus, the captcha response and the height of the content cannot be processed. This might be related to the Content Security Policy (CSP) of Salesforce.
+  
+- Why not use a Visualforce Page instead of a static resource?
+  - A visualforce page is not public by default. Using Recaptcha means, that you often want to protect a flow, that is available for the public.
 
 - Can you support Google Recaptcha v3?
   - I have to check but I don't think so. Maybe implementing Google Recaptcha v2 invisible would be fairly easy.

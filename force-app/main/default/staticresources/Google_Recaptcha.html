@@ -7,6 +7,18 @@
 		var targetPageURL = "*";
 		var sitekey = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI';
 		
+		// Reads the URL query parameters
+		function getUrlVars() {
+			var vars = {};
+			var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,    
+			function(m,key,value) {
+			  vars[key] = value;
+			});
+			return vars;
+		}
+		
+		sitekey = getUrlVars()["sitekey"] ? getUrlVars()["sitekey"] : '';
+		
 		// Recaptcha challenge window detection
 		var interval;
 		

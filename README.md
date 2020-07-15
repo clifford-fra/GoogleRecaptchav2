@@ -3,7 +3,7 @@
 This component was developed by me, because I want to avoid any spam or brute force attacks on my flow, that is deployed with Lightning Out on an external page and on a community.
 
 ## Basic Concept
-The flow component actually relies on three parts: An aura component, an HTML static resource and an Apex class. The aura component embeds the static resource as an iframe. The HTML file references the Google Recaptcha API and renders the Recaptcha. The iframe tells the aura component the current height and width of the content (e.g. recaptcha challenge) by using `Window.postMessage` and will also communicate the captcha response in the same way after the user completes the challenge. The aura component will take the token and call a method in the apex class, where the secret key is saved. The apex class will verify the token against the secret key in a callout to Google. If the verification is successful, the aura component will switch it's variable `isHuman` to `true` and let the user go to the next screen.
+The flow component actually relies on three parts: An aura component, an HTML static resource and an Apex class. The aura component embeds the static resource as an iframe. The HTML file references the Google Recaptcha API and renders the Recaptcha. The iframe tells the aura component the current height and width of the content (e.g. recaptcha challenge) by using `Window.postMessage` and will also communicate the captcha response in the same way after the user completes the challenge. The aura component will take the token and call a method in the apex class. The apex class will verify the token against the secret key in a callout to Google. If the verification is successful, the aura component will switch it's variable `isHuman` to `true` and let the user go to the next screen.
 
 ## Features
 
@@ -16,35 +16,21 @@ The flow component actually relies on three parts: An aura component, an HTML st
 
 - `isHuman`: defaults to false, will be set to true, if the recaptcha verifies you as human
 - `originPageURL`: insert the URL where the flow will run. e.g.: in the form of https://force-ability-5985-dev-ed--c.visualforce.com if you run it from the flow builder
-- `enableServerSideVerification`: defaults to false, if set to true, the captcha response will be verified against your secret key in a callout to google
-- `required`: defaults to true, make it required to pass the recaptcha
+- `enableServerSideVerification`: defaults to true, if set to false, the captcha response will not be verified against your secret key in a callout to google. Avoid turning this off
+- `required`: defaults to true, makes it required to pass the recaptcha
 - `requiredMessage (optional)`: the error message displayed, if the user just clicks on next and has not verified he his human yet
+- `secretKey`: The secret key for your domain
+- `siteKey`: The site key for your domain
 
 ## Installation instructions
 
-At minimum for testing purposes, you just have to insert the correct `originPageURL` in the flow component. Then it will run with googles official test site and secret key. But in order to set up the component properly, you have to do the following:
+For testing purposes, you have to insert at minimum the correct `originPageURL` in the flow component. Then it will run with googles official test sitekey and secretkey. But in order to set up the component properly, you have to do the following:
 
 ### Part 1
 Generate your own site and secret key here: https://www.google.com/recaptcha/
 
 ### Part 2
-In the html file in the static resource `Google_Recaptcha`, update these lines and reupload the resource:
-```javascript
-var targetPageURL = "*";
-var sitekey = '6Ldq2qwZAAAAAFtCcLEFEVkRk1V2EAe4FV1f4xnF';
-```
-
-`targetPageURL` will work with the wildcard `"*"`, but for security reasons, you should enter the URL, where the flow component runs. Remember: The component will only work if the domains in `targetPageURL` in the static resource, URL in your Browser and `originPageURL` in the flow components' input are the same (well except if you use the wildcard in the static resource, then only the last two need to be the same).
-
-Setting the `targetPageURL` in the static resource to a specific URL means, that the flow component will only run on this domain. If you want to use the Recaptcha Component for example in your Org and in your community (with different domains), then leave the `targetPageURL` variable `"*"`.
-
-Checkout this link to get more information: https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage
-
-### Part 3
-In the GoogleRecaptchaHandler apex class, insert your own secret key at the beginning:
-```apex
-private static String recaptchaSecretKey = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe';
-```
+After you place the flow component on a screen, insert your `sitekey` and `secretkey`. Also set `originPageURL` correctly to the domain, where your flow runs in e.g. in the form of https://example.com. There's no need to add the rest of the URL path. It just needs to have the protocol, domain (and maybe the port).
 
 ## FAQ
 - Why not use a lightning web component?
@@ -54,18 +40,16 @@ private static String recaptchaSecretKey = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4Wi
   - A visualforce page is not public by default. Using Recaptcha means, that you often want to protect a flow, that is available for the public.
 
 - Can you support Google Recaptcha v3?
-  - I have to check but I don't think so. Maybe implementing Google Recaptcha v2 invisible would be fairly easy.
+  - I have to check but I don't think so. Maybe implementing Google Recaptcha v2 invisible would be easy.
 
 - The Recaptcha tells me, that it can only be used for testing purposes!
   - Create your own site and secret key and insert them as explained.
 
 - Eventhough I successfully passed the recaptcha challenge, the flow will not let me go to the next screen.
-  - Check the `originPageURL`variable and set it correctly. Otherwise the aura component will not receive the recaptcha response. Also check the `targetPageURL` in the static resource.
+  - Check the `originPageURL`variable and set it correctly. Otherwise the aura component will not receive the recaptcha response.
 
 - Is this component secure?
-  - Well, I hope so. As long as the input variables of an aura component are considered secure (are they?), then this component is secure. Always activate the server side verification and set the `targetPageURL` properly if possible.
+  - Well, I hope so. As long as the input variables of an aura component are considered secure (are they?), then this component is secure. Always activate the server side verification. If you want to increase security, then set the `targetPageURL` properly in the static resource if possible. See also: https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage
 
-
-## Possible Enhancements in the future
-- Passing the `targetPageURL`and `sitekey` to the iframe as query parameters.
-- Passing the `secret-key` from the aura component to the apex class as string parameter.
+## Further Information
+It's possible to host the HTML file of the static resource somewhere else. This is recommended if you use Lightning Out, because X-Frame-Options will not allow you to embed the static resource directly in an external page. If you do so, then you have to change the `src` tag in the aura component. You also have to add the iFrame URL to the `CSP Trusted Sites` in Salesforce Setup. Consequently, the `originPageURL` variable would be the iframes' location.

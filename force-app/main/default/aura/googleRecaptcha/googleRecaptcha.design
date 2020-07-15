@@ -1,4 +1,4 @@
-<design:component label="Google Recaptcha v2 Checkbox">
+<design:component label="Google Recaptcha v2">
     <design:attribute name="isHuman" label="Is Human?" description="Will be set to true after verification" />
     <design:attribute name="originPageURL" label="Origin Page URL" description="The domain where your flow runs e.g. https://example.com" />
     <design:attribute name="required" label="Required?" description="If the completion of the captcha is required" />

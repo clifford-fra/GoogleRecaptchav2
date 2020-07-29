@@ -15,7 +15,7 @@ The flow component actually relies on three parts: An aura component, an HTML st
 ## Flow input and output variables
 
 - `isHuman`: defaults to false, will be set to true, if the recaptcha verifies you as human
-- `originPageURL`: insert the URL where the flow will run. e.g.: in the form of https://force-ability-5985-dev-ed--c.visualforce.com if you run it from the flow builder
+- `originPageURL`: insert the URL where the flow will run. e.g.: in the form of https://force-ability-5985-dev-ed--c.visualforce.com if you run it from the flow builder. The originPageURL is actually the URL of the static resource, which contains the Recaptcha as HTML. The URL varies depending on where your flow is deployed.
 - `enableServerSideVerification`: defaults to true, if set to false, the captcha response will not be verified against your secret key in a callout to google. Avoid turning this off
 - `required`: defaults to true, makes it required to pass the recaptcha
 - `requiredMessage (optional)`: the error message displayed, if the user just clicks on next and has not verified he his human yet
@@ -33,7 +33,7 @@ Or use the Deploy to Salesforce button:\
        src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
 </a>
 
-For testing purposes, you have to insert at minimum the correct `originPageURL` in the flow component. Then it will run with googles official test sitekey and secretkey. But in order to set up the component properly, you have to do the following:
+For testing purposes, you have to insert at minimum the correct `originPageURL` in the flow component (for more information on `originPageURL`, look at the section above) Then it will run with googles official test sitekey and secretkey. But in order to set up the component properly, you have to do the following:
 
 ### Part 1
 Generate your own site and secret key here: https://www.google.com/recaptcha/

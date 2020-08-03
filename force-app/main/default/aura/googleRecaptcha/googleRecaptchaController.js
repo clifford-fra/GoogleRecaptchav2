@@ -1,5 +1,14 @@
 ({
-    doInit: function(cmp, evt, helper) {
+    doInit: function(cmp, evt, helper) {     
+        
+        // Parsing the originPageURLs
+        var originPageURL = cmp.get("v.originPageURL");
+        var allowedURLs = originPageURL
+            .split(",")
+            .map(function(item) {
+                return item.trim();
+            });
+
 
         // Validating if the recaptcha has been passed successfully 
         cmp.set('v.validate', function() {
@@ -21,7 +30,7 @@
         window.addEventListener("message", function(event) {
             
             // Security Check
-            if (event.origin !== cmp.get("v.originPageURL")) {
+            if (allowedURLs === undefined || allowedURLs.length == 0 || allowedURLs.indexOf(event.origin) == -1) {
                 return;
             }
 

@@ -1,14 +1,26 @@
 ({
-    doInit: function(cmp, evt, helper) {     
-        
+    doInit: function(cmp, evt, helper) {
+                
         // Parsing the originPageURLs
-        var originPageURL = cmp.get("v.originPageURL");
-        var allowedURLs = originPageURL
-            .split(",")
-            .map(function(item) {
-                return item.trim();
-            });
+        var allowedURLs = [];
 
+        if (cmp.get("v.originPageURL") != null) {
+            var originPageURL = cmp.get("v.originPageURL");
+            allowedURLs = originPageURL
+                .split(",")
+                .map(function(item) {
+                    return item.trim();
+                });
+        }
+
+        // Fetching your Salesforce ORG URLs
+        helper.sendRequest(cmp, 'c.fetchBaseURL', {})
+            .then($A.getCallback(function(records) {                
+                cmp.set("v.allowedURLs", allowedURLs.concat(records));
+            }))
+            .catch(function(errors) {
+                console.error('ERROR: ' + errors);
+            });
 
         // Validating if the recaptcha has been passed successfully 
         cmp.set('v.validate', function() {
@@ -28,8 +40,10 @@
 
         // Listen to the events send from the iframe
         window.addEventListener("message", function(event) {
-            
+
             // Security Check
+            allowedURLs = JSON.stringify(cmp.get("v.allowedURLs"));
+
             if (allowedURLs === undefined || allowedURLs.length == 0 || allowedURLs.indexOf(event.origin) == -1) {
                 return;
             }

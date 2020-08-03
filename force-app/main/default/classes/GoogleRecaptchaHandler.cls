@@ -1,4 +1,16 @@
 public with sharing class GoogleRecaptchaHandler {
+
+    @AuraEnabled
+    public static List<String> fetchBaseURL() {
+        List<String> allowedURLs = new List<String>();
+
+        allowedURLs.add(URL.getOrgDomainUrl().toExternalForm());
+        allowedURLs.add(URL.getSalesforceBaseUrl().toExternalForm());
+        allowedURLs.add(URL.getOrgDomainUrl().toExternalForm().replace('.my.salesforce.com', '.lightning.force.com'));
+        allowedURLs.add(URL.getOrgDomainUrl().toExternalForm().replace('.my.salesforce.com', '--c.visualforce.com'));
+
+        return allowedURLs;
+    }
         
     @AuraEnabled
     public static Boolean isVerified(String recaptchaResponse, String recaptchaSecretKey){

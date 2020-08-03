@@ -43,7 +43,6 @@
 
             // Security Check
             allowedURLs = JSON.stringify(cmp.get("v.allowedURLs"));
-            console.log(allowedURLs);
 
             if (allowedURLs === undefined || allowedURLs.length == 0 || allowedURLs.indexOf(event.origin) == -1) {
                 return;

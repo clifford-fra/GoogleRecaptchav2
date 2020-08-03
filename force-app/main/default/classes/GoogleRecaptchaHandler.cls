@@ -1,9 +1,15 @@
 public with sharing class GoogleRecaptchaHandler {
 
     @AuraEnabled
-    public static String fetchBaseURL() {
-        string orgURL = URL.getSalesforceBaseUrl().toString();
-        return orgURL;
+    public static List<String> fetchBaseURL() {
+        List<String> allowedURLs = new List<String>();
+
+        allowedURLs.add(URL.getOrgDomainUrl().toExternalForm());
+        allowedURLs.add(URL.getSalesforceBaseUrl().toExternalForm());
+        allowedURLs.add(URL.getOrgDomainUrl().toExternalForm().replace('.my.', '.lightning.force.'));
+        allowedURLs.add(URL.getOrgDomainUrl().toExternalForm().replace('.my.salesforce.com', '--c.visualforce.com'));
+
+        return allowedURLs;
     }
         
     @AuraEnabled

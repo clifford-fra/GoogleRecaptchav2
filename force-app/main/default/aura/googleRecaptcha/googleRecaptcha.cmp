@@ -7,6 +7,7 @@
     <aura:attribute name="enableServerSideVerification" type="Boolean" default="true" />
     <aura:attribute name="siteKey" type="String" default="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" />
     <aura:attribute name="secretKey" type="String" default="6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe" />
+    <aura:attribute name="allowedURLs" type="String[]" />
 
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
 

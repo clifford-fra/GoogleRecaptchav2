@@ -1,4 +1,10 @@
 public with sharing class GoogleRecaptchaHandler {
+
+    @AuraEnabled
+    public static String fetchBaseURL() {
+        string orgURL = URL.getSalesforceBaseUrl().toString();
+        return orgURL;
+    }
         
     @AuraEnabled
     public static Boolean isVerified(String recaptchaResponse, String recaptchaSecretKey){

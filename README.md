@@ -10,12 +10,13 @@ The flow component actually relies on three parts: An aura component, an HTML st
 - Google Recaptcha v2 checkbox flow component
 - A responsive layout, that adapts to the size of the recaptcha, especially the challenge window
 - Server side verification of the recaptcha response
-- Fully compatible to all browsers (tested with Firefox, Chrome, Internet Explorer, Chrome Mobile)
+- Fully compatible to all browsers (tested with Firefox, Chrome, Internet Explorer 9, Chrome Mobile)
+- Run your flow on communities, lightning pages and almost anywhere
 
 ## Flow input and output variables
 
-- `isHuman`: defaults to false, will be set to true, if the recaptcha verifies you as human
-- `originPageURL`: insert the URL where the flow will run. e.g.: in the form of https://force-ability-5985-dev-ed--c.visualforce.com if you run it from the flow builder. The originPageURL is actually the URL of the static resource, which contains the Recaptcha as HTML. The URL varies depending on where your flow is deployed.
+- `isHuman`: defaults to false, will be set to true, if the recaptcha verifies you human
+- `originPageURL`: A comma seperated list of URLs, where your flow runs. e.g.: in the form of: https://myOrgURL.visualforce.com, https://myCommunityURL.force.com, https://myOrgURL.force.com. The `originPageURL` is actually the URL of the static resource, which contains the Recaptcha as HTML. The URL varies depending on where your flow is deployed.
 - `enableServerSideVerification`: defaults to true, if set to false, the captcha response will not be verified against your secret key in a callout to google. Avoid turning this off
 - `required`: defaults to true, makes it required to pass the recaptcha
 - `requiredMessage (optional)`: the error message displayed, if the user just clicks on next and has not verified he his human yet
@@ -42,6 +43,9 @@ Generate your own site and secret key here: https://www.google.com/recaptcha/
 After you place the flow component on a screen, insert your `sitekey` and `secretkey`. Also set `originPageURL` correctly to the domain, where your flow runs in e.g. in the form of https://example.com. There's no need to add the rest of the URL path. It just needs to have the protocol, domain (and maybe the port).
 
 ## FAQ
+- I'm getting the error `TypeError: cmp.find(...) is undefined throws [...]` when I use the previous flow button and try the Recaptcha again.
+  - Ignore this error, that only appears if you run the flow from Flow Builder. It doesn't have any impact on security or functionality.
+
 - Why not use a lightning web component?
   - A lightning web component does not receive messages from the embedded iframe. Thus, the captcha response and the height of the content cannot be processed. This might be related to the Content Security Policy (CSP) of Salesforce.
   

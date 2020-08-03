@@ -1,6 +1,6 @@
 <design:component label="Google Recaptcha v2">
     <design:attribute name="isHuman" label="Is Human?" description="Will be set to true after verification" />
-    <design:attribute name="originPageURL" label="Origin Page URL" description="The domain where your flow runs e.g. https://example.com" />
+    <design:attribute name="originPageURL" label="Origin Page URL" description="A comma seperated list with domains, where your flow is run e.g. https://myOrgURL.visualforce.com, https://myCommunityDomain.force.com, https://myOrgURL.force.com" />
     <design:attribute name="required" label="Required?" description="If the completion of the captcha is required" />
     <design:attribute name="requiredMessage" label="Required Message (optional)" description="An alternative required message" />
     <design:attribute name="enableServerSideVerification" label="Server Side Verification?" description="If set to true, the grecaptcha response is verified against the secret key" />

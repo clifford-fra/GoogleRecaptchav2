@@ -34,7 +34,7 @@ Use the Deploy to Salesforce button to install the component:\
 </a>
 
 ### Part 2
-Generate your own site and secret key here: https://www.google.com/recaptcha/
+Generate your own site and secret key here: https://www.google.com/recaptcha/. I have added the Testkeys from Google as default, so you can try it out of the box.
 
 ### Part 3
 After you place the flow component on a screen, insert your `sitekey` and `secretkey`.

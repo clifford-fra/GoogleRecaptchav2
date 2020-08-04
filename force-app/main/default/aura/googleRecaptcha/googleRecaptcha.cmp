@@ -3,6 +3,7 @@
     <aura:attribute name="originPageURL" type="String" />
     <aura:attribute name="required" type="Boolean" default="true" />
     <aura:attribute name="requiredMessage" type="String" />
+    <aura:attribute name="requiredOnce" type="Boolean" default="false" />
     <aura:attribute name="recaptchaResponse" type="String" />
     <aura:attribute name="enableServerSideVerification" type="Boolean" default="true" />
     <aura:attribute name="siteKey" type="String" default="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" />
@@ -11,5 +12,7 @@
 
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
 
-    <iframe aura:id="captchaFrame" src="{!$Resource.Google_Recaptcha + '?sitekey=' + v.siteKey}" width="350" height="100" style="border:0px; overflow:hidden;" />
+    <aura:if isTrue="{!and(v.isHuman == false, v.requiredOnce == true}">
+        <iframe aura:id="captchaFrame" src="{!$Resource.Google_Recaptcha + '?sitekey=' + v.siteKey}" width="350" height="100" style="border:0px; overflow:hidden;" />
+    </aura:if>
 </aura:component>

@@ -2,7 +2,9 @@
     doInit: function(cmp, evt, helper) {
 
         // Reset the isHuman onRendering
-        cmp.set("v.isHuman", false);
+        if (cmp.get("v.requiredOnce") === false) {
+            cmp.set("v.isHuman", false);
+        }
                 
         // Parsing the originPageURLs
         var allowedURLs = [];
@@ -77,7 +79,15 @@
                     .then($A.getCallback(function(records) {
                         // If verified positive                    
                         if (records === true) {
-                            cmp.set("v.isHuman", true);
+
+                            // Let the animation wait a bit
+                            window.setTimeout(
+                                $A.getCallback(function() {
+                                    cmp.set("v.isHuman", true);
+                                }), 500
+                            );
+
+                            //cmp.set("v.isHuman", true);
                         }
                     }))
                     .catch(function(errors) {

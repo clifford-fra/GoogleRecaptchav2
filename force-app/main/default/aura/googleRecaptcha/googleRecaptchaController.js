@@ -1,5 +1,8 @@
 ({
     doInit: function(cmp, evt, helper) {
+
+        // Reset the isHuman onRendering
+        cmp.set("v.isHuman", false);
                 
         // Parsing the originPageURLs
         var allowedURLs = [];

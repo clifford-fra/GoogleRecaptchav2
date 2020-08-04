@@ -80,14 +80,18 @@
                         // If verified positive                    
                         if (records === true) {
 
-                            // Let the animation wait a bit
-                            window.setTimeout(
-                                $A.getCallback(function() {
-                                    cmp.set("v.isHuman", true);
-                                }), 500
-                            );
-
-                            //cmp.set("v.isHuman", true);
+                            // Let the animation wait a bit to fade out if required once
+                            if (cmp.get("v.requiredOnce") === true) {
+                                window.setTimeout(
+                                    $A.getCallback(function() {
+                                        cmp.set("v.isHuman", true);
+                                    }), 500
+                                );
+                            } else {
+                                // else do it directly
+                                cmp.set("v.isHuman", true);
+                            }
+                           
                         }
                     }))
                     .catch(function(errors) {

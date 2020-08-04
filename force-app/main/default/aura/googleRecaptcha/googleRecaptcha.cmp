@@ -12,7 +12,7 @@
 
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
 
-    <aura:if isTrue="{!and(v.isHuman == false, v.requiredOnce == true}">
+    <aura:if isTrue="{!and(v.isHuman == false, v.requiredOnce == true)}">
         <iframe aura:id="captchaFrame" src="{!$Resource.Google_Recaptcha + '?sitekey=' + v.siteKey}" width="350" height="100" style="border:0px; overflow:hidden;" />
     </aura:if>
 </aura:component>

@@ -26,10 +26,7 @@ The flow component actually relies on three parts: An aura component, an HTML st
 
 ## Installation instructions
 
-An unmanaged Package can be installed from here:\
-https://login.salesforce.com/packaging/installPackage.apexp?p0=04t2p0000010Rkd
-
-Or use the Deploy to Salesforce button:\
+Use the Deploy to Salesforce button:\
 <a href="https://githubsfdeploy.herokuapp.com">
   <img alt="Deploy to Salesforce"
        src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">

@@ -12,7 +12,15 @@
 
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
 
-    <aura:if isTrue="{!and(v.isHuman == false, v.requiredOnce == true)}">
-        <iframe aura:id="captchaFrame" src="{!$Resource.Google_Recaptcha + '?sitekey=' + v.siteKey}" width="350" height="100" style="border:0px; overflow:hidden;" />
+    <!-- In case requiredOnce is set to true and the captcha has not been verified, display it -->
+    <aura:if isTrue="{!v.requiredOnce == true}">
+        <aura:if isTrue="{!v.isHuman == false}">
+        	<iframe aura:id="captchaFrame" src="{!$Resource.Google_Recaptcha + '?sitekey=' + v.siteKey}" width="350" height="100" style="border:0px; overflow:hidden;" />
+        </aura:if>
+        
+        <aura:set attribute="else">
+            <iframe aura:id="captchaFrame" src="{!$Resource.Google_Recaptcha + '?sitekey=' + v.siteKey}" width="350" height="100" style="border:0px; overflow:hidden;" />
+        </aura:set>   
     </aura:if>
+    
 </aura:component>

@@ -66,3 +66,25 @@ Your flow is deployed somewhere else? Then set `originPageURL` correctly to the 
 
 ## Further Information
 It's possible to host the HTML file of the static resource somewhere else. This is recommended if you use Lightning Out, because X-Frame-Options will not allow you to embed the static resource directly in an external page. If you do so, then you have to change the `src` tag in the aura component. You also have to add the iFrame URL to the `CSP Trusted Sites` in Salesforce Setup. Consequently, the `originPageURL` variable would be the iframes' location.
+
+## Contributions
+
+I want to mention all sources that helped me to develop this component. Some of them were out in the wild for years, but I put all ideas together and added a bunch of new features like combining Aura component and a static resource, challenge detection and resizing, automatic URL creation and so on.
+
+Jami Gibbs (Basic Concept)
+https://blog.jamigibbs.com/integrating-google-recaptcha-v2-into-a-salesforce-lightning-componentx/
+
+Kevin Hill (Using a static resource)
+https://salesforce.stackexchange.com/questions/252419/google-recaptcha-v3-implementation-in-lightning-web-component
+
+Craig Johnson (Server Side Verification)
+https://www.learncommunitycloud.com/s/article/Implementing-reCAPTCHA-in-Community-Cloud#RecaptchaV2Checkbox
+
+Ramana Varasi (Basic Concept)
+http://varasi.com/salesforce/embedding-google-recaptcha-v2-in-salesforce-lightning-component-to-increase-security/
+
+Miguel Duarte (Basic Concept)
+http://www.rightitservices.com/resource-hub/item/1319-google-recaptcha-v2-in-salesforce-custom-lightning-component
+
+Xiaoan Lin (synchronous apex call)
+https://www.xgeek.net/salesforce/using-promise-for-apex-server-side-request-in-lightning-component/

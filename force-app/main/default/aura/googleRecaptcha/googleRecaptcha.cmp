@@ -16,11 +16,11 @@
     <!-- In case requiredOnce is set to true and the captcha has not been verified, display it -->
     <aura:if isTrue="{!v.requiredOnce == true}">
         <aura:if isTrue="{!v.isHuman == false}">
-        	<iframe aura:id="captchaFrame" src="{!$Resource.Google_Recaptcha + '?sitekey=' + v.siteKey + '&title=' + v.frameTitle}" width="350" height="100" style="border:0px; overflow:hidden;" />
+        	<iframe aura:id="captchaFrame" src="{!$Resource.Google_Recaptcha + '?sitekey=' + v.siteKey + '&#38;title=' + v.frameTitle}" width="350" height="100" style="border:0px; overflow:hidden;" />
         </aura:if>
         
         <aura:set attribute="else">
-            <iframe aura:id="captchaFrame" src="{!$Resource.Google_Recaptcha + '?sitekey=' + v.siteKey + '&title=' + v.frameTitle}" width="350" height="100" style="border:0px; overflow:hidden;" />
+            <iframe aura:id="captchaFrame" src="{!$Resource.Google_Recaptcha + '?sitekey=' + v.siteKey + '&#38;title=' + v.frameTitle}" width="350" height="100" style="border:0px; overflow:hidden;" />
         </aura:set>   
     </aura:if>
     

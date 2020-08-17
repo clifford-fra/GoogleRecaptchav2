@@ -16,9 +16,10 @@
 			});
 			return vars;
 		}
-		
-		sitekey = getUrlVars()["sitekey"] ? getUrlVars()["sitekey"] : '';	
-		document.title = getUrlVars()["title"] ? getUrlVars()["title"] : 'I\'m not a robot captcha';
+
+		sitekey = getUrlVars()["sitekey"] ? getUrlVars()["sitekey"] : '';
+		var title = getUrlVars()["title"] ? getUrlVars()["title"] : 'I\'m not a robot captcha';
+		document.title = decodeURIComponent(title);
 
 		
 		// Recaptcha challenge window detection

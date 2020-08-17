@@ -23,6 +23,7 @@ The flow component actually relies on three parts: An aura component, an HTML st
 - `Required only once?`: If true, the Recaptcha will only appear once. Else it will always appear on the screen. Consider this option, if you want to use the previous button to return to the screen, where this component is deployed. Defaults to false.
 - `Recaptcha Secret Key`: The secret key for your domain
 - `Recaptcha Site Key`: The site key for your domain
+- `Recaptcha Frame Title (optional)`: For accessibility usage. Some browsers like Firefox won't directly tab into the checkbox and will instead focus the recaptcha frame at first. If you provide some text here, screenreaders will read this text if they focus the iframe. Defaults to: I'm not a robot captcha.
 
 ## Installation instructions
 

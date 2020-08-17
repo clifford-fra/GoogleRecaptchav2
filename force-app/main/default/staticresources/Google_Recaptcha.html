@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>Recaptcha Frame</title>
+		<title>I'm not a robot captcha</title>
 		<script type="text/javascript">
 		
 		// Variables to customize
@@ -16,8 +16,11 @@
 			});
 			return vars;
 		}
-		
+
 		sitekey = getUrlVars()["sitekey"] ? getUrlVars()["sitekey"] : '';
+		var title = getUrlVars()["title"] ? getUrlVars()["title"] : 'I\'m not a robot captcha';
+		document.title = decodeURIComponent(title);
+
 		
 		// Recaptcha challenge window detection
 		var interval;

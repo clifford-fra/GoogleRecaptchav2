@@ -7,4 +7,5 @@
     <design:attribute name="enableServerSideVerification" label="Server Side Verification?" description="If set to true, the grecaptcha response is verified against the secret key" />
     <design:attribute name="secretKey" label="Recaptcha Secret Key" description="Your secret key generated for your domain" />
     <design:attribute name="siteKey" label="Recaptcha Site Key" description="Your site key generated for your domain" />
+    <design:attribute name="frameTitle" label="Recaptcha Frame Title (optional)" description="Provide a meaningful title of the recaptcha frame for screenreaders (accessibility)" />
 </design:component>

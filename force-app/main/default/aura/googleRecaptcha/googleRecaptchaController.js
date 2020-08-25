@@ -47,9 +47,20 @@
         window.addEventListener("message", function(event) {
 
             // Security Check
-            allowedURLs = JSON.stringify(cmp.get("v.allowedURLs"));
+            var hasDomain = false;
+            var listAllowedURLs = cmp.get("v.allowedURLs");
 
-            if (allowedURLs === undefined || allowedURLs.length == 0 || allowedURLs.indexOf(event.origin) == -1) {
+            if (listAllowedURLs === undefined || listAllowedURLs.length == 0) {
+                return;
+            }
+
+            for (let i = 0; i < listAllowedURLs.length; i++) {
+                if (listAllowedURLs[i] == event.origin) {
+                    hasDomain = true;
+                }
+            }
+
+            if (!hasDomain) {
                 return;
             }
 

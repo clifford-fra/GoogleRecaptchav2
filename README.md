@@ -67,7 +67,7 @@ Your flow is deployed somewhere else? Then set `originPageURL` correctly to the 
   - Check if the user, that runs the flow, has either the Permission Set `Google Recaptcha Flow Component` or directly assign access to the `GoogleRecaptchaHandler` Apex class.
 
 - Is this component secure?
-  - Well, I hope so. As long as the input variables of an aura component are considered secure (are they?), then this component is secure. Always activate the server side verification. If you want to increase security, then set the `targetPageURL` properly in the static resource if possible. See also: https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage
+  - Well, no. To increase security, the Secret Key should be saved on the server e.g. in the Apex class. Always activate the server side verification. If you want to increase security, then set the `targetPageURL` properly in the static resource if possible. See also: https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage
 
 ## Further Information
 It's possible to host the HTML file of the static resource somewhere else. This is recommended if you use Lightning Out, because X-Frame-Options will not allow you to embed the static resource directly in an external page. If you do so, then you have to change the `src` tag in the aura component. You also have to add the iFrame URL to the `CSP Trusted Sites` in Salesforce Setup. Consequently, the `originPageURL` variable would be the iframes' location.

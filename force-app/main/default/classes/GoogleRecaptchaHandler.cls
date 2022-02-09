@@ -10,7 +10,7 @@ public with sharing class GoogleRecaptchaHandler {
         allowedURLs.add(URL.getOrgDomainUrl().toExternalForm().replace('.my.salesforce.com', '--c.visualforce.com'));
 
         return allowedURLs;
-    }
+    } 
         
     @AuraEnabled
     public static Boolean isVerified(String recaptchaResponse, String recaptchaSecretKey){

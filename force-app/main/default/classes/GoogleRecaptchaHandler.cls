@@ -27,8 +27,8 @@ public with sharing class GoogleRecaptchaHandler {
 
             if (result.containsKey('success') && result.get('success') == true) {      
                 
-                // Log validation of the submitted 
-                logValidation(flowInterviewGuid);
+                // Store in platform cache
+                Cache.Org.put(getCacheKey(flowInterviewGuid), DateTime.now());
 
                 return true;      
             } else {
@@ -39,19 +39,6 @@ public with sharing class GoogleRecaptchaHandler {
         return false;
     }
     
-    public static void logValidation (String flowInterviewGuid) {
-
-        // Insert a unique reference for the Flow Interview ID
-        try {
-            insert new Google_reCAPTCHA_Validation__c(
-                Name = processFlowInterviewGuid(flowInterviewGuid)
-            );
-        }
-        catch (Exception ex) {
-            system.debug('### Already validated');
-        }
-    }
-
     // Validate the Google reCAPTCHA has been submitted
     @InvocableMethod (label='Validate reCAPTCHA' description='Use the Flow Interview ID to validate the reCAPTCHA has been submitted by user')
     public static List<Boolean> validateRecaptcha(List<String> flowIntervewGuids) {  
@@ -60,17 +47,13 @@ public with sharing class GoogleRecaptchaHandler {
 
         for (String flowInterviewGuid :flowIntervewGuids) {
 
-            // Retrieve the verification record
-            Google_reCAPTCHA_Validation__c captchaValidation = 
-                Google_reCAPTCHA_Validation__c.getInstance(processFlowInterviewGuid(flowInterviewGuid));
-
             // If we have a valid validation record
-            if (captchaValidation != null) {
+            if (Cache.Org.contains(getCacheKey(flowInterviewGuid))) {
 
                 validated.add(true);
 
-                // Once we've verified the reCAPTCHA, we can delete it.
-                delete captchaValidation;
+                // Remove the cache
+                Cache.Org.remove(getCacheKey(flowInterviewGuid));
             }
             else {
 
@@ -81,8 +64,7 @@ public with sharing class GoogleRecaptchaHandler {
         return validated;
     }
 
-    // Limit flowInterviewGuid to 38 chars as that is max for custom setting name
-    public static String processFlowInterviewGuid(String flowInterviewGuid) {
-        return flowInterviewGuid.split('-')[0].left(38);
+    public static String getCacheKey(String flowInterviewGuid) {
+        return 'local.GoogleRecaptchaVerification.' + flowInterviewGuid.split('-')[0];
     }
 }

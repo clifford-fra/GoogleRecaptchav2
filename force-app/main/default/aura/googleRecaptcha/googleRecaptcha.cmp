@@ -10,6 +10,7 @@
     <aura:attribute name="secretKey" type="String" default="6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe" />
     <aura:attribute name="allowedURLs" type="String[]" />
     <aura:attribute name="frameTitle" type="String" />
+    <aura:attribute name="flowGuid" type="String" />
 
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
 

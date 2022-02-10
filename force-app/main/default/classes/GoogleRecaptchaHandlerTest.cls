@@ -4,7 +4,7 @@ global with sharing class GoogleRecaptchaHandlerTest {
     @IsTest static void testIsVerified() {
         Test.setMock(HttpCalloutMock.class, new GoogleRecaptchaHandlerTest.RecaptchaHttpCalloutMock());
 
-        System.assert(GoogleRecaptchaHandler.isVerified('8djkfhsdfjsd49234734', '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe'));
+        System.assert(GoogleRecaptchaHandler.isVerified('8djkfhsdfjsd49234734', '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe', 'XXX'));
     }
 
     @IsTest static void testFetchBaseURL() {

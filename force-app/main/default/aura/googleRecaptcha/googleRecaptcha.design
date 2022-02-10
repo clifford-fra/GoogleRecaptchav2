@@ -8,4 +8,5 @@
     <design:attribute name="secretKey" label="Recaptcha Secret Key" description="Your secret key generated for your domain" />
     <design:attribute name="siteKey" label="Recaptcha Site Key" description="Your site key generated for your domain" />
     <design:attribute name="frameTitle" label="Recaptcha Frame Title (optional)" description="Provide a meaningful title of the recaptcha frame for screenreaders (accessibility)" />
+    <design:attribute name="flowGuid" label="Flow Interview GUID" description="Pass in the {!$Flow.InterviewGuid} to support server side validation."  />
 </design:component>

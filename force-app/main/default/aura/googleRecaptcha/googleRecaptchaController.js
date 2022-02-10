@@ -85,7 +85,11 @@
                     cmp.set("v.recaptchaResponse", data);
                     
                     // Create the server side apex verification
-                    var params = {"recaptchaResponse" : cmp.get("v.recaptchaResponse"), "recaptchaSecretKey" : cmp.get("v.secretKey")};
+                    var params = {
+                        "recaptchaResponse" : cmp.get("v.recaptchaResponse"), 
+                        "recaptchaSecretKey" : cmp.get("v.secretKey"),
+                        "flowInterviewGuid": cmp.get("v.flowGuid")
+                    };
                     helper.sendRequest(cmp, 'c.isVerified', params)
                     .then($A.getCallback(function(records) {
                         // If verified positive                    
